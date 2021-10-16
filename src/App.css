@@ -1,8 +1,53 @@
 .height-100 {
-    height: 100vh;
+  height: 100vh;
 }
 
+#background-home {
+  background: url(assets/images/sekolah.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
+.all-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px black;
+}
+
+@media (min-width: 576px) {
+  .big-text {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .big-text {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .big-text {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .big-text {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .big-text {
+    font-size: 4rem;
+  }
+}
 /* .App {
   text-align: center;
 }
