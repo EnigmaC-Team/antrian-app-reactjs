@@ -1,0 +1,37 @@
+@media (min-width: 576px) {
+  .big-text {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .big-text {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .big-text {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .big-text {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .big-text {
+    font-size: 4.8rem;
+  }
+
+  .medium-text {
+    font-size: 2.8rem;
+  }
+
+  .small-text {
+    font-size: 1.05rem;
+  }
+}
