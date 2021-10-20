@@ -19,31 +19,21 @@ export function Registration() {
         </div>
         <div className="row px-lg-5">
           <div className="col-lg-6 all-center">
-            <div className="height-50 bg-login w-100 m-1 all-center">
-              <img src={loginLogo} alt="login" />
+            <div className="height-50 bg-login w-100 m-1 all-center px-1 px-lg-2">
+              <img src={loginLogo} alt="login" className="img-fluid"/>
             </div>
           </div>
           <div className="col-lg-6 all-center">
-            <div className="height-50 bg-login w-100 my-1 py-1 px-5 all-center flex-column">
+            <div className="height-50 bg-login w-100 m-1 py-1 px-1 px-lg-2 all-center flex-column">
               <h2 className="text-center">MASUK</h2>
               <form>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">
-                    Nomor Induk Mahasiswa
-                  </label>
-                  <input
-                    class="form-control"
-                  />
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"/>
+                  <label for="floatingInput">NIM</label>
                 </div>
-                <div class="mb-2">
-                  <label for="exampleInputPassword1" class="form-label">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="exampleInputPassword1"
-                  />
+                <div class="form-floating">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password"/>
+                  <label for="floatingPassword">Password</label>
                 </div>
                 <h6 className="text-end mb-3 mt-1"><a href=" " className="text-decoration-none text-dark">Lupa Password?</a></h6>
                 <button type="submit" class="btn btn-primary float-end">

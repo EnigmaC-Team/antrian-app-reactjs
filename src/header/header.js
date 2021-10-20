@@ -5,12 +5,12 @@ export function Header() {
 
   return (
     <nav className='navbar navbar-expand-lg bg-dark navbar-dark fixed-top'>
-      <div class="container px-lg-5">
+      <div className="container px-lg-5">
         <a className="navbar-brand fs-3 fw-bold" href=" ">
           <img
             src={logo}
             alt="logo-fix"
-            className="mb-1 me-2 bg-light p-1 rounded-3"
+            className="me-2 bg-light p-1 rounded-3"
             width="35px"
           />
           IAKN AMBON
@@ -26,34 +26,34 @@ export function Header() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-flex align-items-lg-center">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href=" ">Home</a>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-flex align-items-lg-center">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href=" ">Home</a>
               <div className="underline-animation"></div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href=" ">Login</a>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href=" ">Login</a>
               <div className="underline-animation"></div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href=" ">Registrasi</a>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href=" ">Registrasi</a>
               <div className="underline-animation"></div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href=" ">Operator</a>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href=" ">Operator</a>
               <div className="underline-animation"></div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href=" ">Pengunjung</a>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href=" ">Pengunjung</a>
               <div className="underline-animation"></div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href=" ">Pelayanan</a>
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href=" ">Pelayanan</a>
               <div className="underline-animation"></div>
             </li>
-            <li class="mt-2 mt-lg-0">
-              <a class="text-contact-header" href=" ">Hubungi Kami</a>
+            <li className="mt-2 mt-lg-0">
+              <a className="text-contact-header" href=" ">Hubungi Kami</a>
             </li>
           </ul>
         </div>

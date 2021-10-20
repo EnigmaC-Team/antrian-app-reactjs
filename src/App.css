@@ -30,18 +30,18 @@
 }
 
 .height-50{
-  height: 50vh;
+  height: 280px;
 }
 
 @media (min-width: 992px) {
   .height-registration{
-    height: 100vh;
+    height: 600px;
   }
 }
 
 @media (max-width: 991px) {
   .height-registration{
-    height: 160vh;
+    height: 1000px;
   }
 }
 /* @media (max-width: 767px) {
