@@ -15,10 +15,10 @@ export function Home() {
             Layanan {">"} Simpan Struk Antrian
           </span>
           <div></div>
-          <button className="btn btn-outline-light shadow-sm border border-3 border-light mt-4 me-3 medium-text rounded-4 py-2">
+          <button className="btn btn btn-outline-light shadow-sm border border-3 border-light mt-4 me-3 medium-text rounded-4 py-2">
             DAFTAR SEKARANG
           </button>
-          <button className="btn btn-outline-light shadow-sm border-3 border-light mt-4 medium-text abs py-2">
+          <button className="btn btn btn-outline-light shadow-sm border-3 border-light mt-4 medium-text abs py-2">
             BUTUH BANTUAN
           </button>
         </div>

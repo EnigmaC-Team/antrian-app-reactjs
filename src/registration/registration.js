@@ -44,7 +44,7 @@ export function Registration() {
           </div>
         </div>
         <div className="row all-center">
-          <div className="btn btn-warning col-6 col-lg-3 mt-4 shadow">
+          <div className="btn btn-warning col-10 col-sm-3 mt-4 shadow">
             BELUM MEMILIKI AKUN
           </div>
         </div>
