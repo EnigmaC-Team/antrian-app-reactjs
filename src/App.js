@@ -5,6 +5,7 @@ import "./components/FontAwesomeIcon";
 import { Home } from "./home/home";
 import { Header } from "./header/header";
 import { Registration } from "./registration/registration";
+import { Loket } from "./loket/loket";
 
 function App() {
 
@@ -20,6 +21,9 @@ function App() {
       </div>
       <div className="height-registration bg-dark d-flex">
         <Registration/>
+      </div>
+      <div className="height-100 bg-light">
+        <Loket/>
       </div>
     </div>
   );
