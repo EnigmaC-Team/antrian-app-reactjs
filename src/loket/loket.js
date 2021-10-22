@@ -3,6 +3,10 @@ import axios from 'axios';
 import "./loket.css";
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
+import ReactDatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import Select from 'react-select'
+import serveTime from './serveTime.json';
 
 export function Loket() {
   const semuaLokets = {
@@ -57,13 +61,49 @@ export function Loket() {
     ]
   };
 
-  const [semuaLoket, setSemuaLoket] = useState(semuaLokets)
+  const [semuaLoket, setSemuaLoket] = useState(semuaLokets);
+  const [loketOption, setLoketOption] = useState('Konsul Laporan Beasiswa');
+  const [choosenDate, setChoosenDate] = useState(new Date());
+  const [choosenTime, setChoosenTime] = useState({ label: serveTime[0].label, value: serveTime[0].value })
+  
+  const isWeekday = (date) => {
+    const day = date.getDay()
+    return day !== 0 && day !== 6
+  }
+
+  function handleAmbilAntrian(number){
+    let initialNumber = 0;
+    if(number){
+      initialNumber = number;
+    }
+    const userStorage = JSON.parse(sessionStorage.getItem('user'))
+    const sendedData = {
+      uid : userStorage.id,
+      counter: initialNumber,
+      date: choosenDate.getFullYear() + "-" + (choosenDate.getMonth()+1) + "-" + choosenDate.getDate() + " " + choosenTime.value + ":00", 
+      necessity: loketOption
+    }
+    console.log("data yang terkirim : ", sendedData)
+    try{
+      axios.post("https://antrian-api.herokuapp.com/ticket", sendedData)
+      .then(response => console.log(response.data))
+    } catch(e) {
+      console.log(e.message)
+    }
+  }
 
   useEffect(() => {
-    axios
+    try{
+      axios
       .get("https://antrian-api.herokuapp.com/loket")
-      .then(response => setSemuaLoket(response.data));
-  }, []);
+      .then(response => {
+        console.log("data yang di fetch : ", response.data)
+        setSemuaLoket(response.data)
+      })
+    } catch(e) {
+      console.log(e.message);
+    }
+  }, [loketOption]);
 
   return (
     <div className="container">
@@ -79,7 +119,7 @@ export function Loket() {
           <div className="row px-1 px-lg-0">
             <div className="col-lg-6 bg-login bg-light text-dark mx-auto rounded-2 all-center flex-column">
               <h1 className="font-counter mt-2 mt-lg-0 fs-1">
-                <CountUp end={semuaLoket.total} duration={1} redraw={true}>
+                <CountUp end={semuaLoket.total} duration={1}>
                   {({ countUpRef, start }) => (
                     <VisibilitySensor onChange={start} delayedCall>
                         <span ref={countUpRef} />
@@ -99,7 +139,7 @@ export function Loket() {
                   <div className="border-2 border-bottom w-100 text-center mb-2">
                     <h6 className="fw-bold fs-5 mt-2 text-uppercase">{loket.loket}</h6>
                     <h6 className="fw-light fs-3">
-                      <CountUp end={loket.jumlah} duration={1} redraw={true}>
+                      <CountUp end={loket.jumlah} duration={1}>
                         {({ countUpRef, start }) => (
                           <VisibilitySensor onChange={start} delayedCall>
                               <span ref={countUpRef} />
@@ -111,12 +151,13 @@ export function Loket() {
                   </div>
                   {loket.isi.map((isi) => {
                     return(
-                      <dl className="row w-100 rounded-1 bg-info text-dark">
+                      <dl className={loketOption === isi.nama ? "row w-100 rounded-1 text-dark my-1 bg-danger" : "row w-100 rounded-1 text-dark my-1 bg-info"}
+                      onClick={() => {setLoketOption(isi.nama)}}>
                         <dt className="col-10 d-flex align-items-center text-start border-light border-2 border-end font-sub-loket">
                           {isi.nama}
                         </dt>
                         <dd className="col-2 pt-2 all-center">
-                          <CountUp end={isi.jumlah} duration={1} redraw={true}>
+                          <CountUp end={isi.jumlah} duration={1}>
                             {({ countUpRef, start }) => (
                               <VisibilitySensor onChange={start} delayedCall>
                                   <span ref={countUpRef} />
@@ -127,14 +168,30 @@ export function Loket() {
                       </dl>
                     )
                   })}
+                  <div className="mt-1">
+                      <ReactDatePicker className="text-center mb-2"
+                        minDate={new Date()}
+                        maxDate={new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()+7)}
+                        selected={choosenDate}
+                        onChange={(date) => setChoosenDate(date)}
+                        // filterDate={isWeekday}
+                      />
+                      <Select 
+                        options={serveTime} 
+                        isSearchable={false} 
+                        placeholder="Pilih Jam" 
+                        defaultValue={choosenTime}
+                        onChange={(e) => setChoosenTime(e)}
+                      />
+                  </div>
+                  <div className="d-flex my-2 w-100">
+                    <button className="btn btn-sm btn-warning w-100" onClick={function(){handleAmbilAntrian(semuaLoket.isi.indexOf(loket) + 1)}}>
+                      AMBIL NOMOR ANTRIAN
+                    </button>
+                  </div>
                 </div>
               );
             })}
-          </div>
-          <div className="d-flex">
-            <button className="btn btn-warning mx-auto">
-              AMBIL NOMOR ANTRIAN
-            </button>
           </div>
         </div>
       </div>

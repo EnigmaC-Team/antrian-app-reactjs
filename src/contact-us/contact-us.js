@@ -20,8 +20,8 @@ export function ContactUs() {
             <div className="col-lg-3 all-center mt-2">
                 <div className="contact-container bg-dark rounded-3 text-light w-100 d-flex align-items-center px-3">
                     <ul className="list-unstyled font-contact-small">
-                        <li><i class="bi bi-youtube me-2"></i>IAKNAMBON</li>
-                        <li><i class="bi bi-globe2 me-2"></i>www.iaknambon.ac.id</li>
+                        <li><i className="bi bi-youtube me-2"></i>IAKNAMBON</li>
+                        <li><i className="bi bi-globe2 me-2"></i>www.iaknambon.ac.id</li>
                     </ul>
                 </div>
             </div>
