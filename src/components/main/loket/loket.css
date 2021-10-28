@@ -14,3 +14,9 @@
 .font-sub-loket{
     font-size: 0.8rem;
 }
+
+.border-date{
+    border : 2px solid rgb(237, 237, 237);
+    padding : 6px;
+    padding-left: 8px;
+}

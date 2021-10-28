@@ -1,4 +1,5 @@
 import "./home.css";
+import { Link } from 'react-scroll';
 
 export function Home() {
   return (
@@ -15,10 +16,12 @@ export function Home() {
             Layanan {">"} Simpan Struk Antrian
           </span>
           <div></div>
-          <button className="btn btn btn-outline-light shadow-sm border border-3 border-light mt-4 me-3 medium-text rounded-4 py-2">
+          <button className="btn btn btn-outline-light shadow-sm border border-3 border-light mt-4 fs-4 me-3 rounded-4 py-2">
+            <Link to="registration" smooth={true} duration={100} offset={40}>
             DAFTAR SEKARANG
+            </Link>
           </button>
-          <button className="btn btn btn-outline-light shadow-sm border-3 border-light mt-4 medium-text abs py-2">
+          <button className="btn btn btn-outline-light shadow-sm border-3 border-light mt-4 fs-4 abs py-2">
             BUTUH BANTUAN
           </button>
         </div>

@@ -1,5 +1,5 @@
 import "./header.css";
-import logo from "../assets/images/logo-fix.png";
+import logo from "../../../assets/images/logo-fix.png";
 import {Link} from 'react-scroll';
 
 export function Header() {
@@ -31,17 +31,17 @@ export function Header() {
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-flex align-items-lg-center">
           <Link className="nav-item text-decoration-none" to="background-home" smooth={true} duration={100}>
             <a className="nav-link active" aria-current="page" href=" ">
-              Home
+              Menu Utama
             </a>
             <div className="underline-animation"></div>
           </Link>
-          <Link className="nav-item text-decoration-none" to="registration" smooth={true} duration={100}>
+          <Link className="nav-item text-decoration-none" to="registration" smooth={true} duration={100} offset={40}>
             <a className="nav-link active" aria-current="page" href=" ">
-              Registrasi
+              Pendaftaran
             </a>
             <div className="underline-animation"></div>
           </Link>
-          <Link className="nav-item text-decoration-none" to="loket" smooth={true} duration={100} offset={-36}>
+          <Link className="nav-item text-decoration-none" to="loket" smooth={true} duration={100} offset={-10}>
             <a className="nav-link active" aria-current="page" href=" ">
               Pelayanan
             </a>

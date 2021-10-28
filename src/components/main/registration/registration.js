@@ -1,21 +1,16 @@
+import { useState, useContext } from "react";
+import { UserContext } from "../../shared/Context/userContext";
 import "./registration.css";
-import loginLogo from "../assets/images/register.jpg";
-import { useState, useEffect } from "react";
+import loginLogo from "../../../assets/images/register.jpg";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
+import { Link } from 'react-scroll'
 
 export function Registration() {
   const [form, setForm] = useState({});
   const [loading, setLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    if(sessionStorage.getItem('user')){
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  },[])
+  const {isAccountOn, setIsAccountOn} = useContext(UserContext);
+  const [errors, setErrors] = useState();
 
   const setField = (field, value) => {
     setForm({
@@ -27,47 +22,43 @@ export function Registration() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-
+    setErrors(undefined);
     setTimeout(() => {
-      try {
         axios
           .post("https://antrian-api.herokuapp.com/signin", form)
           .then((response) => {
             sessionStorage.setItem("user", JSON.stringify(response.data));
-            setIsLoggedIn(true);
-          });
-      } catch (e) {
-        console.log(e.message);
-        setIsLoggedIn(false);
-      }
-      setLoading(false)
+            setIsAccountOn(true);
+          }).catch(e => {
+            setErrors("NIM atau password salah")
+            }
+          )
+      setLoading(false);
     }, 1000);
   };
 
   return (
-    <div className="container-fluid mt-auto registration-container bg-light">
+    <div className="container-fluid mt-auto registration-container bg-light all-center">
       <div className="container-md">
-        <h1 className="text-center mt-3 mb-2">HALAMAN REGISTRASI</h1>
         <div className="all-center">
-          <h6 className="text-center mb-4 fw-light col-lg-10">
-            Pastikan anda sudah memiliki akun untuk dapat melakukan pendaftaran
-            pada setiap loket yang anda inginkan. Jika anda belum memiliki akun,
-            anda dapat langsung menekan tombol{" "}
-            <strong className="text-dark fw-bold">belum memiliki akun</strong>{" "}
-            pada bagian bawah halaman
-          </h6>
+          <span
+            className="text-center mb-4 border-3 border-bottom border-primary font-title"
+          >
+            HALAMAN MASUK
+          </span>
         </div>
+        <div className="all-center"></div>
         <div className="row px-lg-5">
           <div className="col-lg-6 all-center">
-            <div className="height-50 bg-login w-100 m-1 all-center px-1 px-lg-2">
-              <img src={loginLogo} alt="login" className="img-fluid" />
+            <div className="height-50 bg-login w-100 m-1 py-2 px-1 px-lg-2 all-center flex-column">
+              <img src={loginLogo} alt="login" className="img-fluid"/>
             </div>
           </div>
           <div className="col-lg-6 all-center">
             <div className="height-50 bg-login w-100 m-1 py-1 px-1 px-lg-2 all-center flex-column">
-              {!isLoggedIn ? (
+              {!isAccountOn ? (
                 <div>
-                  <h2 className="text-center">MASUK</h2>
+                  <h3 className="text-center">MASUKKAN AKUN</h3>
                   <Form
                     style={{ width: "300px" }}
                     className="p-2"
@@ -80,6 +71,7 @@ export function Registration() {
                       <Form.Control
                         type="text"
                         onChange={(e) => setField("nim", e.target.value)}
+                        isInvalid={errors}
                         required
                       />
                     </Form.Group>
@@ -89,8 +81,16 @@ export function Registration() {
                       <Form.Control
                         type="password"
                         onChange={(e) => setField("password", e.target.value)}
+                        isInvalid={errors}
                         required
                       />
+                      {errors ? (
+                        <Form.Control.Feedback type="invalid">
+                          {errors}
+                        </Form.Control.Feedback>
+                      ) : (
+                        <div className="pb-4"></div>
+                      )}
                     </Form.Group>
 
                     <Button
@@ -105,7 +105,7 @@ export function Registration() {
                           role="status"
                         />
                       ) : (
-                        <span>SUBMIT</span>
+                        <span>MASUK</span>
                       )}
                     </Button>
                   </Form>
@@ -121,9 +121,12 @@ export function Registration() {
           </div>
         </div>
         <div className="row all-center">
-          <div className="btn btn-warning col-10 col-sm-3 mt-4 shadow">
-            BELUM MEMILIKI AKUN
-          </div>
+          <Button
+            className="btn btn-warning col-10 col-sm-4 mt-4"
+            disabled={!isAccountOn}
+          >
+            <Link to="loket" smooth={true} duration={100} offset={-10}>LANJUT KE TAHAP BERIKUTNYA</Link> 
+          </Button>
         </div>
       </div>
     </div>
