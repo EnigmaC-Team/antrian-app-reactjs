@@ -46,7 +46,7 @@ export function QueueTaker() {
       "Jumat, ",
       "Sabtu, ",
     ];
-    for (let x = 0; x <= 7; x++) {
+    for (let x = 0; x < 7; x++) {
       let selectWeek = {
         value:
           availableWeekAfter[x].getFullYear() +
@@ -108,26 +108,30 @@ export function QueueTaker() {
         .get(url)
         .then((response) => {
           console.log("data waktu yang di dapat : ", response.data);
+          const currenDate = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + new Date().getDate();
+          const timeInNumber = new Date().getHours()*100 + new Date().getMinutes();
           const availableTimeAPI = [];
           for (let i = 0; i < response.data.length; i++) {
             if (response.data[i].counter === choosenLoket.value) {
-              const dataTime = {
-                value: JSON.stringify(response.data[i])
-                  .split(" ")[1]
-                  .substring(0, 8),
-                label: JSON.stringify(response.data[i])
-                  .split(" ")[1]
-                  .substring(0, 8),
-              };
-              availableTimeAPI.push(dataTime);
+              const dateFromAPI = JSON.stringify(response.data[i]).split(" ")[1].substring(0, 5)
+              if(response.data[0].date.split(" ")[0] === currenDate){
+                if(Number(dateFromAPI.split(":").join("")) > timeInNumber){
+                  const dataTime = {
+                    value: JSON.stringify(response.data[i]).split(" ")[1].substring(0, 8),
+                    label: dateFromAPI
+                  };
+                  availableTimeAPI.push(dataTime);
+                }
+              } else {
+                const dataTime = {
+                  value: JSON.stringify(response.data[i]).split(" ")[1].substring(0, 8),
+                  label: dateFromAPI
+                };
+                availableTimeAPI.push(dataTime);
+              }
             }
           }
           setAvailableTime(availableTimeAPI);
-          if (availableTime.length !== 0) {
-            setChoosenTime(availableTime[0]);
-          } else {
-            setChoosenTime(undefined);
-          }
         })
         .catch((e) => {
           console.error(e.message);
@@ -149,8 +153,14 @@ export function QueueTaker() {
       const url = "https://antrian-api.herokuapp.com/ticket";
       axios
         .post(url, sendedData)
-        .then((response) => console.log(response.data))
-        .catch((e) => console.error(e));
+        .then((response) => {
+          console.log("antrian yang berhasil didaftarkan : ", response.data);
+          alert(`Anda berhasil daftar pada loket ${choosenLoket.label} untuk keperluan ${choosenLoketOption.label} pada pukul ${choosenTime.label}`)
+        })
+        .catch((e) => {
+          alert('Mohon maaf, terjadi kesalahan saat pengambilan nomor antrian')
+          console.error(e);
+        })
     }
   };
 
@@ -191,6 +201,7 @@ export function QueueTaker() {
                 value={choosenDate}
                 onChange={(e) => {
                   setChoosenDate(e);
+                  setChoosenTime(null);
                 }}
               />
               <h6 className="mb-1 mt-2">Loket</h6>
@@ -200,6 +211,7 @@ export function QueueTaker() {
                 value={choosenLoket}
                 onChange={(e) => {
                   setChoosenLoket(e);
+                  setChoosenTime(null);
                 }}
               />
               <h6 className="mb-1 mt-2">Layanan</h6>
@@ -225,6 +237,7 @@ export function QueueTaker() {
                 className="btn btn-primary w-100"
                 disabled={!choosenTime}
                 onClick={() => onSubmit()}
+                data-bs-dismiss="modal"
               >
                 Selesai
               </button>

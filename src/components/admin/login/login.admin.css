@@ -1,0 +1,10 @@
+.height-admin-login{
+    height: 100vh;
+    min-height: 650px;
+}
+
+.login-admin-container{
+    width: 100vw;
+    max-width: 400px;
+    height: 300px;
+}
