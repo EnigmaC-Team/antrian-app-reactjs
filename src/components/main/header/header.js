@@ -51,7 +51,7 @@ export function Header() {
               to="registration"
               smooth={true}
               duration={100}
-              offset={40}
+              offset={30}
             >
               <a className="nav-link active" aria-current="page" href=" ">
                 Pendaftaran
@@ -63,7 +63,7 @@ export function Header() {
               to="loket"
               smooth={true}
               duration={100}
-              offset={-10}
+              offset={-18}
             >
               <a className="nav-link active" aria-current="page" href=" ">
                 Pelayanan

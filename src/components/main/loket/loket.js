@@ -16,8 +16,7 @@ export function Loket() {
 
   useEffect(() => {
     try {
-      axios.get("https://antrian-api.herokuapp.com/loket").then((response) => {
-        console.log("data yang di fetch : ", response.data);
+      axios.get("loket").then((response) => {
         setLoketData(response.data);
       });
     } catch (e) {
@@ -48,7 +47,7 @@ export function Loket() {
               <h6 className="fw-light mb-lg-2 fs-6">
                 TOTAL ANTRIAN HARI INI
               </h6>
-              <div className="d-flex my-2 w-100">
+              <div className="d-flex my-2 w-100 flex-column">
                 <button
                   className="btn btn-sm btn-warning w-100"
                   data-bs-toggle="modal"
@@ -57,6 +56,7 @@ export function Loket() {
                 >
                   AMBIL NOMOR ANTRIAN
                 </button>
+                <div className={isAccountOn ? "text-verify-loket d-none" : "text-verify-loket"}>(silahkan login untuk ambil antrian)</div>
                 
                 {/* MODAL FROM BOOTSTRAP */}
                 <UserContext.Provider value={{loketData}}>
@@ -91,8 +91,8 @@ export function Loket() {
                   </div>
                   {loket.isi.map((isi) => {
                     return (
-                      <dl className="row w-100 rounded-1 text-dark my-1 bg-info">
-                        <dt className="col-10 d-flex align-items-center text-start border-light border-2 border-end font-sub-loket">
+                      <dl className="row w-100 rounded-1 text-dark my-1 sub-loket-counter">
+                        <dt className="col-10 d-flex align-items-center text-start font-sub-loket border-count-sub-loket">
                           {isi.nama}
                         </dt>
                         <dd className="col-2 pt-2 all-center">

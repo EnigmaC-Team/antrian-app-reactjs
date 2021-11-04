@@ -2,6 +2,13 @@
     height: 300px;
 }
 
+.text-verify-loket{
+    font-size: 12px;
+    text-align: center;
+    margin-top: 5px;
+    color: rgb(94, 94, 94);
+}
+
 .antrian-container{
     height: 100px;
     width: 300px;
@@ -13,6 +20,14 @@
 
 .font-sub-loket{
     font-size: 0.8rem;
+}
+
+.sub-loket-counter{
+    border: 2px solid rgb(177, 148, 237);
+}
+
+.border-count-sub-loket{
+    border-right: 1px solid rgb(177, 148, 237);
 }
 
 .border-date{

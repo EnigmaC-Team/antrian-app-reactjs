@@ -102,12 +102,11 @@ export function QueueTaker() {
   useEffect(() => {
     if (choosenDate && choosenLoket) {
       const url =
-        "https://antrian-api.herokuapp.com/system/schedule/" +
+        "system/schedule/" +
         choosenDate.value;
       axios
         .get(url)
         .then((response) => {
-          console.log("data waktu yang di dapat : ", response.data);
           const currenDate = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + new Date().getDate();
           const timeInNumber = new Date().getHours()*100 + new Date().getMinutes();
           const availableTimeAPI = [];
@@ -149,12 +148,10 @@ export function QueueTaker() {
         date: choosenDate.value + " " + choosenTime.value,
         necessity: choosenLoketOption.value,
       };
-      console.log("data yang dikirim : ", sendedData);
-      const url = "https://antrian-api.herokuapp.com/ticket";
+      const url = "ticket";
       axios
         .post(url, sendedData)
         .then((response) => {
-          console.log("antrian yang berhasil didaftarkan : ", response.data);
           alert(`Anda berhasil daftar pada loket ${choosenLoket.label} untuk keperluan ${choosenLoketOption.label} pada pukul ${choosenTime.label}`)
         })
         .catch((e) => {

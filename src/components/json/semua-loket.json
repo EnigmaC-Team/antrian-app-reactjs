@@ -2,12 +2,47 @@
     "total": 0,
     "isi": [
         {
-            "loket": "DATA ERROR",
-            "nama": "DATA ERROR",
+            "loket": "loket 1",
+            "nama": "BIDANG KEMAHASISWAAN",
             "jumlah": 0,
             "isi": [
                 {
-                    "nama": "DATA ERROR",
+                    "nama": "Konsul Laporan Beasiswa",
+                    "jumlah": 0
+                },
+                {
+                    "nama": "Buka Blokir Rekening",
+                    "jumlah": 0
+                },
+                {
+                    "nama": "Surat Keterangan PDPT",
+                    "jumlah": 0
+                },
+                {
+                    "nama": "Surat Aktif Kuliah",
+                    "jumlah": 0
+                }
+            ]
+        },
+        {
+            "loket": "loket 2",
+            "nama": "BIDANG AKADEMIK",
+            "jumlah": 0,
+            "isi": [
+                {
+                    "nama": "Bebas Akademik",
+                    "jumlah": 0
+                },
+                {
+                    "nama": "Pengambilan Ijazah",
+                    "jumlah": 0
+                },
+                {
+                    "nama": "Cuti Kuliah",
+                    "jumlah": 0
+                },
+                {
+                    "nama": "Pengambilan KRS",
                     "jumlah": 0
                 }
             ]

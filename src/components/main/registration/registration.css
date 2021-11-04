@@ -24,17 +24,20 @@
   position: relative;
 }
 
-.tess {
-  height: 20px;
-  width: 20px;
-  margin-top: 2px;
-}
-
-.tesss {
-  width: 100px;
-  height: 40px;
+.border-bottom-title-regist{
+  border-bottom: 3px solid #AA14F0;
 }
 
 .font-superbig{
   font-size: 100px;
+}
+
+.btn-masuk-registration{
+  background-color : #AA14F0;
+  border: 0px;
+}
+
+.btn-masuk-registration:hover{
+  background-color : rgb(79, 44, 150);
+  border: 0px;
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./login.admin.css";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import { Link as ReactLink } from "react-router-dom";
 
 export function LoginAdmin() {
   const [form, setForm] = useState({});
@@ -19,17 +20,18 @@ export function LoginAdmin() {
     e.preventDefault();
     setLoading(true);
     setErrors(undefined);
-    setTimeout(() => {
-      axios
-        .post("https://antrian-api.herokuapp.com/signin", form)
-        .then((response) => {
-          sessionStorage.setItem("user", JSON.stringify(response.data));
-        })
-        .catch((e) => {
-          setErrors("username atau password admin salah");
-        });
-      setLoading(false);
-    }, 1000);
+    console.log(form);
+    axios
+      .post("admin/signin", form)
+      .then((response) => {
+        sessionStorage.setItem("admin", JSON.stringify(response.data));
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.error(e);
+        setErrors("username atau password admin salah");
+        setLoading(false);
+      });
   };
   return (
     <div className="height-admin-login" id="background-home">
@@ -68,22 +70,35 @@ export function LoginAdmin() {
                   <div className="pb-4"></div>
                 )}
               </Form.Group>
-
-              <Button
-                type="submit"
-                className="mt-3 px-3 float-end"
-                style={{ width: "120px" }}
-                disabled={loading}
-              >
-                {loading ? (
-                  <div
-                    className="spinner-border spinner-border-sm"
-                    role="status"
-                  />
-                ) : (
-                  <span>MASUK</span>
-                )}
-              </Button>
+              {!sessionStorage.getItem("admin") ? (
+                <Button
+                  type="submit"
+                  className="mt-3 px-3 float-end btn-masuk-registration"
+                  style={{ width: "120px" }}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <div
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                    />
+                  ) : (
+                    <span>MASUK</span>
+                  )}
+                </Button>
+              ) : (
+                <ReactLink
+                  to="/admin/list"
+                  className="text-decoration-none nav-link active"
+                >
+                  <Button
+                    type="button"
+                    className="mt-3 px-3 float-end btn-masuk-registration w-100"
+                  >
+                    GO TO ADMIN PAGE
+                  </Button>
+                </ReactLink>
+              )}
             </Form>
           </div>
         </div>

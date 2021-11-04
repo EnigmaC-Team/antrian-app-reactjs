@@ -4,12 +4,12 @@ import "./registration.css";
 import loginLogo from "../../../assets/images/register.jpg";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
-import { Link } from 'react-scroll'
+import { Link } from "react-scroll";
 
 export function Registration() {
   const [form, setForm] = useState({});
   const [loading, setLoading] = useState(false);
-  const {isAccountOn, setIsAccountOn} = useContext(UserContext);
+  const { isAccountOn, setIsAccountOn } = useContext(UserContext);
   const [errors, setErrors] = useState();
 
   const setField = (field, value) => {
@@ -23,27 +23,24 @@ export function Registration() {
     e.preventDefault();
     setLoading(true);
     setErrors(undefined);
-    setTimeout(() => {
-        axios
-          .post("https://antrian-api.herokuapp.com/signin", form)
-          .then((response) => {
-            sessionStorage.setItem("user", JSON.stringify(response.data));
-            setIsAccountOn(true);
-          }).catch(e => {
-            setErrors("NIM atau password salah")
-            }
-          )
-      setLoading(false);
-    }, 1000);
+    axios
+      .post("signin", form)
+      .then((response) => {
+        sessionStorage.setItem("user", JSON.stringify(response.data));
+        setIsAccountOn(true);
+        setLoading(false);
+      })
+      .catch((e) => {
+        setErrors("NIM atau password salah");
+        setLoading(false);
+      });
   };
 
   return (
     <div className="container-fluid mt-auto registration-container bg-light all-center">
       <div className="container-md">
         <div className="all-center">
-          <span
-            className="text-center mb-4 border-3 border-bottom border-primary font-title"
-          >
+          <span className="text-center mb-4 border-bottom-title-regist font-title">
             HALAMAN MASUK
           </span>
         </div>
@@ -51,7 +48,7 @@ export function Registration() {
         <div className="row px-lg-5">
           <div className="col-lg-6 all-center">
             <div className="height-50 bg-login w-100 m-1 py-2 px-1 px-lg-2 all-center flex-column">
-              <img src={loginLogo} alt="login" className="img-fluid"/>
+              <img src={loginLogo} alt="login" className="img-fluid" />
             </div>
           </div>
           <div className="col-lg-6 all-center">
@@ -95,7 +92,7 @@ export function Registration() {
 
                     <Button
                       type="submit"
-                      className="mt-3 px-3 float-end"
+                      className="mt-3 px-3 float-end btn-masuk-registration"
                       style={{ width: "120px" }}
                       disabled={loading}
                     >
@@ -125,7 +122,9 @@ export function Registration() {
             className="btn btn-warning col-10 col-sm-4 mt-4"
             disabled={!isAccountOn}
           >
-            <Link to="loket" smooth={true} duration={100} offset={-10}>LANJUT KE TAHAP BERIKUTNYA</Link> 
+            <Link to="loket" smooth={true} duration={100} offset={-10}>
+              LANJUT KE TAHAP BERIKUTNYA
+            </Link>
           </Button>
         </div>
       </div>

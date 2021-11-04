@@ -13,8 +13,9 @@ import { ContactUs } from "./components/main/contact-us/contact-us";
 import { UserContext } from "./components/shared/Context/userContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { LoginAdmin } from "./components/admin/login/login-admin";
+import { List } from "./components/admin/list/list";
 
-function App() {
+export function App() {
   const [isAccountOn, setIsAccountOn] = useState(false);
 
   useEffect(() => {
@@ -66,6 +67,7 @@ function App() {
               </div>
             </Route>
             <Route exact path="/admin" component={LoginAdmin}></Route>
+            <Route exact path="/admin/list" component={List}></Route>
           </Switch>
         </Router>
       </UserContext.Provider>

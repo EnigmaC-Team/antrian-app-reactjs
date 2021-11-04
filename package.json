@@ -16,6 +16,7 @@
     "bootstrap-icons": "^1.6.1",
     "cors": "^2.8.5",
     "firebase": "^9.1.3",
+    "http-proxy-middleware": "^0.19.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0",
     "react-countup": "^6.0.0",
@@ -34,6 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy":"https://antrian-api.herokuapp.com/",
   "eslintConfig": {
     "extends": [
       "react-app",
